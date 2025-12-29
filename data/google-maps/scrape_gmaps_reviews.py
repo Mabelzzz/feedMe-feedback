@@ -7,6 +7,7 @@ import os
 import time
 import csv
 
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -16,19 +17,16 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # ================= CONFIG =================
 
-MAPS_URL = os.getenv("MAPS_URL") or (
-    "https://www.google.com/maps/place/Mo-Mo-Paradise+(Megabangna)/@13.6468884,100.6792784,17z/data=!3m2!4b1!5s0x311d5e5b6aa2c6e3:0xd8022fa11255c100!4m18!1m9!3m8!1s0x311d5e5c98aa52d7:0xa40d3abc4c7930b6!2sMo-Mo-Paradise+(Megabangna)!8m2!3d13.6468884!4d100.6818533!9m1!1b1!16s%2Fg%2F11gdtgsw7h!3m7!1s0x311d5e5c98aa52d7:0xa40d3abc4c7930b6!8m2!3d13.6468884!4d100.6818533!9m1!1b1!16s%2Fg%2F11gdtgsw7h?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
-)
+load_dotenv()
 
-OUTPUT = "gmaps_reviews.csv"
-
+MAPS_URL = os.getenv("MAPS_URL")
+OUTPUT = os.getenv("OUTPUT_CSV")
 HEADLESS = os.getenv("HEADLESS", "0") == "1"
 USER_DATA_DIR = os.getenv("USER_DATA_DIR")
-
+MAX_SCROLL = int(os.getenv("MAX_SCROLL") or 100)
 WAIT_SEC = 20
 MAX_STUCK = 25        # กี่รอบที่ไม่มีรีวิวใหม่แล้วหยุด
 SCROLL_PAUSE = 1.2
-
 
 # ================= DRIVER =================
 
@@ -180,7 +178,7 @@ def main():
     stuck = 0
     round_i = 0
 
-    while stuck < MAX_STUCK:
+    while stuck < MAX_STUCK and round_i < MAX_SCROLL:
         expand_more_buttons(driver)
 
         new_count, cards = parse_visible_reviews(driver, seen, rows)
