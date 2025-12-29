@@ -12,6 +12,7 @@ if [ ! -d "venv" ]; then
 	python3 -m venv .venv
 else
 	echo "✅ Virtual environment already exists."
+fi
 
 source .venv/bin/activate
 
