@@ -178,7 +178,7 @@ def main():
     stuck = 0
     round_i = 0
 
-    while stuck < MAX_STUCK and round_i < MAX_SCROLL:
+    while stuck < MAX_STUCK and len(rows) < MAX_SCROLL:
         expand_more_buttons(driver)
 
         new_count, cards = parse_visible_reviews(driver, seen, rows)
