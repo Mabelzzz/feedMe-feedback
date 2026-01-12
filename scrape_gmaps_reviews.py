@@ -19,9 +19,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 load_dotenv()
 
+FOLDER_PATH = "./data/raw/"
+
 MAPS_URL = os.getenv("MAPS_URL")
-OUTPUT = os.getenv("OUTPUT_CSV")
-HEADLESS = os.getenv("HEADLESS", "0") == "1"
+OUTPUT = FOLDER_PATH + os.getenv("OUTPUT_CSV")
+HEADLESS = int(os.getenv("HEADLESS", "0") == "1")
 USER_DATA_DIR = os.getenv("USER_DATA_DIR")
 MAX_SCROLL = int(os.getenv("MAX_SCROLL") or 100)
 WAIT_SEC = 20
@@ -220,5 +222,7 @@ def main():
     driver.quit()
 
 
+
 if __name__ == "__main__":
+    os.makedirs(FOLDER_PATH, exist_ok=True)
     main()
