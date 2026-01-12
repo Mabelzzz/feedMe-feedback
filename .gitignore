@@ -1,6 +1,5 @@
 .env
-.csv
+*.csv
 
 .venv/
 chrome_profile/
-data/
