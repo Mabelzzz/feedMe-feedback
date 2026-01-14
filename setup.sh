@@ -20,6 +20,7 @@ source .venv/bin/activate
 echo "⬇️ Installing requirements from requirements.txt..."
 pip install -U pip
 pip install playwright pandas python-dotenv selenium
+pip install transformers torch pythainlp sentencepiece python-crfsuite
 
 # 4) install browsers
 python -m playwright install --with-deps chromium
