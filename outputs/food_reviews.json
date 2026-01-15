@@ -22,3 +22,11 @@
         "Neutral":5,
         "Score":8.1594971145
     }
+
+    {
+        "Name":"BBQ-Plaza",
+        "Negative":43,
+        "Positive":41,
+        "Neutral":16,
+        "Score":6.0465443037
+    }
