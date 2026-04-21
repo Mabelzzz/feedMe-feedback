@@ -54,7 +54,7 @@ PySocks==1.7.1
 pythainlp==5.2.0
 python-crfsuite==0.9.12
 python-dateutil==2.9.0.post0
-python-dotenv==1.2.1
+python-dotenv==1.2.2
 pytz==2025.2
 PyYAML==6.0.3
 pyzmq==27.1.0
